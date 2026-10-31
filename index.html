@@ -238,10 +238,142 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .black .lab{color:#d9c79d}
 .white.keymode .lab b{font:600 17px/1 var(--body)}
 
-.tips{display:flex; flex-wrap:wrap; gap:8px 28px; margin:18px 4px 0; padding:0; list-style:none; color:var(--ink-dim); font-size:13px}
-.tips li{display:flex; gap:8px; align-items:center}
+
+/* raag highlight on the main keyboard */
+.raag-tag{display:inline-flex; align-items:center; gap:6px; padding:4px 6px 4px 12px; border-radius:999px; border:1px solid rgba(255,179,71,.6); background:rgba(255,179,71,.12); font-weight:600; font-size:12.5px; color:var(--ivory)}
+.raag-tag[hidden]{display:none}
+.raag-tag button{width:22px; height:22px; border-radius:50%; border:0; background:rgba(0,0,0,.35); color:var(--ivory); cursor:pointer; line-height:1; font-size:14px}
+.keys.guide .key.white:not(.in){filter:brightness(.62) saturate(.55)}
+.keys.guide .key.black:not(.in){opacity:.4}
+.keys.guide .key.in::before{content:""; position:absolute; top:12px; left:50%; width:8px; height:8px; margin-left:-4px; border-radius:50%; background:var(--lamp); box-shadow:0 0 10px 2px rgba(255,179,71,.75)}
+
+/* header: guide button */
+.info-btn{display:inline-flex; align-items:center; gap:8px; padding:5px 14px 5px 5px; border-radius:999px; cursor:pointer;
+  border:1px solid rgba(208,167,78,.6); background:rgba(0,0,0,.28); font-weight:600; font-size:13px; letter-spacing:.04em; color:var(--ivory)}
+.info-btn:hover{background:rgba(208,167,78,.18)}
+.info-btn .i{display:grid; place-items:center; width:26px; height:26px; border-radius:50%; background:linear-gradient(180deg,#f2d37e,#c09337); color:#2c1805; font:400 16px/1 var(--display)}
+
+/* song guide, sits above the harmonium */
+.songbook{
+  position:relative; margin-bottom:18px; padding:18px 20px 20px; border-radius:22px;
+  background:var(--grain), linear-gradient(175deg,#4a2312 0%,#2d1409 100%);
+  box-shadow:0 30px 60px -36px #000, inset 0 2px 0 rgba(255,214,160,.18), inset 0 0 0 1px rgba(0,0,0,.65);
+}
+.songbook::before{content:""; position:absolute; inset:7px; border-radius:16px; pointer-events:none; border:1px solid rgba(208,167,78,.28)}
+.sb-top{display:flex; align-items:center; flex-wrap:wrap; gap:10px 14px; margin-bottom:6px}
+.sb-top h2{margin:0 auto 0 0; font:400 clamp(24px,3vw,30px)/1 var(--display); color:var(--ivory)}
+.sb-top .seg{min-width:210px}
+.sb-toggle{padding:8px 14px; border-radius:10px; cursor:pointer; border:1px solid rgba(208,167,78,.5); background:transparent; color:var(--ivory); font-weight:600; font-size:12.5px}
+.sb-toggle:hover{background:rgba(208,167,78,.16)}
+.sb-note{margin:0 0 12px; color:var(--ink-dim); font-size:13px}
+.sb-body[hidden]{display:none}
+.song-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(205px,1fr)); gap:6px; padding:6px; margin-bottom:12px; border-radius:14px; background:rgba(0,0,0,.3); box-shadow:inset 0 1px 3px rgba(0,0,0,.6)}
+.song{display:grid; gap:1px; min-width:0; text-align:left; padding:8px 12px 8px 14px; border:0; border-radius:10px; background:transparent; cursor:pointer}
+.song:hover{background:rgba(255,214,160,.07)}
+.song[aria-selected="true"]{background:linear-gradient(180deg,rgba(208,167,78,.3),rgba(208,167,78,.13)); box-shadow:inset 3px 0 0 var(--brass)}
+.song b{font-weight:600; font-size:13.5px; color:var(--ivory); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.song em{font-style:normal; font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--brass); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+.guide{
+  min-width:0; padding:18px 22px 14px; border-radius:14px; color:#3b2412;
+  background:linear-gradient(180deg,#f6ecd2,#ebdcb8);
+  box-shadow:inset 0 0 0 1px rgba(120,86,30,.35), inset 0 0 60px rgba(150,110,50,.2), 0 14px 30px -16px #000;
+}
+.g-cols{display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); gap:18px 28px}
+.g-taal{padding-left:28px; border-left:1px solid rgba(120,86,30,.28)}
+.guide h3{margin:0; display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 12px; font:400 clamp(20px,2.2vw,26px)/1.2 var(--display); color:#2d1707; text-wrap:balance}
+.guide h3 .by{font:500 13.5px/1.2 var(--body); color:#7a5a2c}
+.g-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.tag{padding:4px 12px; border-radius:999px; border:1px solid #b89a52; background:rgba(208,167,78,.2); font-size:12.5px; font-weight:600; color:#5a3a12}
+.tag .deva{margin-left:8px; font:400 15px/1 var(--deva)}
+.rnote{margin:8px 0 0; font-size:12.5px; color:#7a5a2c}
+.g-raag{margin-top:12px}
+.guide h4{margin:0 0 8px; font:600 11px/1 var(--body); letter-spacing:.18em; text-transform:uppercase; color:#8a6420}
+.desc{margin:0 0 10px; font-size:14.5px; line-height:1.55; max-width:68ch}
+.notes{display:flex; flex-wrap:wrap; gap:6px}
+.nchip{min-width:56px; padding:4px 6px 5px; text-align:center; border-radius:10px; background:#fbf3de; border:1px solid #cdb27a; box-shadow:0 2px 0 #cdb27a}
+.nchip b{display:block; font:400 19px/1.25 var(--deva); color:#3b2412}
+.nchip small{display:block; font:600 10px/1.2 var(--body); color:#8d6d3d; white-space:nowrap}
+.nchip.opt{opacity:.65; border-style:dashed; box-shadow:none}
+.run{margin:6px 0 0; font-weight:600; font-size:14.5px; line-height:1.8}
+.run .lbl{margin-right:10px; padding:0; font:600 10px/1 var(--body); letter-spacing:.16em; text-transform:uppercase; color:#8a6420}
+.run span{padding:2px 6px; border-radius:6px}
+.run span.lo{text-decoration:underline; text-underline-offset:4px}
+.run span.hi{text-decoration:overline}
+.run span.now{background:var(--lamp); color:#2c1805}
+.small{margin:8px 0 0; font-size:12.5px; color:#7a5a2c}
+.btn-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.btn{padding:8px 14px; border-radius:10px; border:1px solid #9b7a2e; cursor:pointer; font-weight:600; font-size:13px; color:#2c1805;
+  background:linear-gradient(180deg,#e8c876,#bb9036); box-shadow:inset 0 1px 0 rgba(255,255,255,.4), 0 2px 4px rgba(0,0,0,.25)}
+.btn.ghost{background:transparent; color:#5a3a12; box-shadow:none}
+.btn.ghost:hover{background:rgba(208,167,78,.18)}
+.btn[aria-pressed="true"].ghost{background:#3a1a0d; border-color:#2a1209; color:var(--ivory)}
+.guide .seg{display:inline-flex; background:rgba(120,86,30,.16); box-shadow:inset 0 1px 2px rgba(0,0,0,.2)}
+.guide .seg button{padding:6px 16px; color:#7a5a2c}
+.guide .seg button[aria-checked="true"]{color:#2c1805}
+.beats{display:grid; grid-template-columns:repeat(var(--nb,8),minmax(0,1fr)); gap:5px; margin:10px 0 6px}
+.beat{padding:6px 2px 4px; text-align:center; border-radius:10px; background:#fbf3de; border:1px solid #cdb27a; transition:background .06s}
+.beat em{display:block; font:600 10px/1 var(--body); font-style:normal; color:#8d6d3d}
+.beat b{display:block; font:600 14.5px/1.5 var(--body); color:#3b2412}
+.beat i{display:block; min-height:11px; font:600 10.5px/1 var(--body); font-style:normal; color:#9b2d2d}
+.beat.sam{border-color:#9b7a2e; box-shadow:0 0 0 1px #9b7a2e}
+.beat.on{background:var(--lamp); border-color:#c9822a}
+.tempo{display:flex; align-items:center; flex-wrap:wrap; gap:8px 12px; margin-top:10px; font-size:13px; font-weight:600}
+.tempo input[type=range]{width:min(200px,100%)}
+.guide output{color:#3b2412}
+.guide input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(90deg,#c9822a var(--fill),#d8c79a var(--fill)); box-shadow:inset 0 1px 2px rgba(0,0,0,.3)}
+.guide input[type=range]::-moz-range-track{background:#d8c79a; box-shadow:inset 0 1px 2px rgba(0,0,0,.3)}
+.guide input[type=range]::-moz-range-progress{background:#c9822a}
+.more{margin-top:14px; padding-top:10px; border-top:1px solid rgba(120,86,30,.28)}
+.more summary{cursor:pointer; font-weight:600; font-size:13px; color:#6b4410}
+.more[open] summary{margin-bottom:10px}
+.steps{margin:0 0 4px; padding-left:22px; display:grid; gap:7px; font-size:14px; line-height:1.55; max-width:72ch}
+.sources{margin:14px 0 0; font-size:12.5px; color:#7a5a2c}
+.sources a{color:#6b4410}
+
+/* pinned bar: appears once the song guide scrolls out of view */
+.dock{position:fixed; top:0; left:0; right:0; z-index:40; display:flex; align-items:center; gap:8px 22px; padding:9px max(16px, calc((100vw - 1240px) / 2));
+  background:linear-gradient(180deg,rgba(34,14,8,.97),rgba(24,9,5,.95)); border-bottom:1px solid rgba(208,167,78,.55); box-shadow:0 12px 24px -10px rgba(0,0,0,.8)}
+.dock[hidden]{display:none}
+.dock-song{display:grid; min-width:0; flex:0 1 230px}
+.dock-song b{font-weight:600; font-size:14px; color:var(--ivory); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.dock-song span{font-size:10.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--brass)}
+.dock .dock-notes{flex:1 1 auto; min-width:0; margin:0; font-size:13.5px; line-height:1.6; white-space:nowrap; overflow-x:auto; color:var(--ivory); scrollbar-width:none}
+.dock .dock-notes::-webkit-scrollbar{display:none}
+.dock .run .lbl{color:var(--brass); margin:0 6px 0 8px}
+.dock .run span{padding:1px 5px}
+.dock-taal{display:flex; align-items:center; gap:10px; flex:none}
+.dock-beats{display:flex; gap:3px}
+.dock-beats i{min-width:28px; padding:4px 4px; border-radius:6px; background:rgba(255,255,255,.08); text-align:center; font:600 11px/1 var(--body); font-style:normal; color:var(--ink-dim)}
+.dock-beats i.sam{box-shadow:inset 0 0 0 1px var(--brass); color:var(--ivory)}
+.dock-beats i.on{background:var(--lamp); color:#2c1805}
+.dock-bpm{display:flex; align-items:center; gap:4px; font:600 12px/1 var(--body); color:var(--ivory)}
+.dock-bpm button{width:24px; height:24px; border-radius:50%; border:1px solid rgba(208,167,78,.6); background:transparent; color:var(--ivory); cursor:pointer; line-height:1}
+.dock-bpm output{min-width:28px; text-align:center; color:var(--ivory)}
+.dock .btn{padding:6px 14px}
+.dock-up{padding:6px 12px; border-radius:10px; border:1px solid rgba(208,167,78,.5); background:transparent; color:var(--ivory); font-weight:600; font-size:12.5px; cursor:pointer}
+
+/* help sheet */
+.overlay{position:fixed; inset:0; z-index:100; display:grid; place-items:center; padding:16px; background:rgba(10,4,2,.74); backdrop-filter:blur(4px)}
+.overlay[hidden]{display:none}
+.sheet{width:min(880px,100%); max-height:min(90vh,920px); overflow:auto; border-radius:18px; color:#3b2412; outline:none;
+  background:linear-gradient(180deg,#f6ecd2,#ebdcb8); box-shadow:0 40px 90px -20px #000, inset 0 0 0 1px rgba(120,86,30,.4)}
+.sheet-head{position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 22px; background:#f3e7c8; border-bottom:1px solid rgba(120,86,30,.3)}
+.sheet-head h2{margin:0; font:400 clamp(22px,3vw,28px)/1.1 var(--display); color:#2d1707}
+.sheet-close{width:38px; height:38px; flex:none; border-radius:50%; border:1px solid #9b7a2e; background:linear-gradient(180deg,#e8c876,#bb9036); color:#2c1805; font-size:22px; line-height:1; cursor:pointer}
+.sheet-body{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 30px; padding:22px}
+.sheet-body h3{margin:0 0 8px; font:600 11px/1.2 var(--body); letter-spacing:.18em; text-transform:uppercase; color:#8a6420}
+.sheet-body p{margin:0 0 7px; font-size:14px; line-height:1.55}
+.sheet-body ul{margin:0 0 4px; padding-left:18px; display:grid; gap:5px; font-size:14px; line-height:1.5}
+.sheet-body kbd{background:#fbf3de; color:#3b2412; border-color:#cdb27a}
+.sheet-wide{grid-column:1/-1}
 
 /* responsive */
+@media (max-width:979px){
+  .g-cols{grid-template-columns:1fr}
+  .g-taal{padding-left:0; border-left:0; padding-top:14px; border-top:1px solid rgba(120,86,30,.28)}
+  .dock-beats{display:none}
+}
 @media (max-width:979px){
   .cabinet{grid-template-columns:1fr 1fr; grid-template-areas:"grille grille" "keys keys" "stops stops" "bellows side"}
   .a-side{align-content:stretch}
@@ -253,6 +385,17 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
   .grille{height:110px}
   .keys{height:220px; min-width:calc(var(--n)*56px)}
   .sliders{grid-template-columns:1fr 1fr}
+  .songbook{padding:14px; border-radius:18px; margin-bottom:14px}
+  .songbook::before{inset:5px; border-radius:13px}
+  .sb-top .seg{width:100%}
+  .song-list{grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:200px; overflow-x:auto}
+  .guide{padding:16px 14px 12px}
+  .beat b{font-size:13px}
+  .sheet-body{grid-template-columns:1fr; padding:18px 16px}
+  .dock{flex-wrap:wrap; padding:8px 14px}
+  .dock-song{flex:1 1 0}
+  .dock .dock-notes{order:3; flex:1 0 100%}
+  .dock-bpm,.dock-up{display:none}
   .stops{gap:4px}
   .knob{width:48px; height:48px}
   .knob::after{inset:16px}
@@ -271,9 +414,55 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
     </div>
     <div class="status">
       <span class="chip" id="saChip"><i></i><span id="saText">Sa = C · Safed 1</span></span>
-      <span class="hint" id="hint">Press any key to wake the reeds</span>
+      <span class="hint" id="hint">Press any key to wake the reeds. New here? Open the Guide.</span>
+      <button type="button" class="info-btn" id="infoBtn" aria-haspopup="dialog"><span class="i" aria-hidden="true">i</span>Guide</button>
     </div>
   </header>
+
+  <section class="songbook" id="songbook" aria-labelledby="t-songs">
+    <div class="sb-top">
+      <h2 id="t-songs">Song guide</h2>
+      <div class="seg" id="genreSeg" role="radiogroup" aria-label="Genre">
+        <button type="button" role="radio" data-genre="ghazal" aria-checked="true">Ghazals</button>
+        <button type="button" role="radio" data-genre="qawwali" aria-checked="false">Qawwali</button>
+      </div>
+      <button type="button" class="sb-toggle" id="sbToggle" aria-expanded="true" aria-controls="sbBody">Hide guide</button>
+    </div>
+    <div class="sb-body" id="sbBody">
+      <p class="sb-note">Melodies and lyrics are left out on purpose. Learn the tune by ear and let the raag show you where its notes live.</p>
+      <div class="song-list" id="songList" role="listbox" aria-label="Songs"></div>
+      <article class="guide" id="guide">
+        <div class="g-cols">
+          <div class="g-main">
+            <div id="gHead"></div>
+            <div class="g-raag" id="gRaag"></div>
+          </div>
+          <div class="g-taal">
+            <h4 id="t-taal">Taal practice</h4>
+            <div class="seg" id="taalSeg" role="radiogroup" aria-label="Taal">
+              <button type="button" role="radio" data-taal="dadra" aria-checked="true">Dadra</button>
+              <button type="button" role="radio" data-taal="kaharwa" aria-checked="false">Kaharwa</button>
+            </div>
+            <div class="beats" id="beats" role="group" aria-label="Beats of the taal"></div>
+            <p class="small" id="taalHint"></p>
+            <div class="tempo">
+              <label for="bpm">Tempo</label>
+              <input type="range" id="bpm" min="50" max="180" value="100">
+              <output id="bpmV">100</output><span>BPM</span>
+              <button type="button" class="btn" id="taalBtn" aria-pressed="false">Start</button>
+            </div>
+          </div>
+        </div>
+        <details class="more">
+          <summary>About this raag, how to practise, and sources</summary>
+          <div id="gTip"></div>
+          <h4>How to practise</h4>
+          <ol class="steps" id="gSteps"></ol>
+          <p class="sources" id="gSrc"></p>
+        </details>
+      </article>
+    </div>
+  </section>
 
   <main class="cabinet" id="cabinet">
 
@@ -343,6 +532,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
             <button type="button" role="radio" data-label="keys" aria-checked="false">Z X C</button>
           </div>
         </div>
+        <span class="raag-tag" id="raagTag" hidden>Lit keys: <span id="raagName"></span><button type="button" id="raagClear" aria-label="Turn off raag highlight">×</button></span>
         <div class="group">
           <span class="mini-label">Computer keys</span>
           <div class="seg" id="baseSeg" role="radiogroup" aria-label="Octave for computer keys">
@@ -358,12 +548,87 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
     </section>
   </main>
 
-  <ul class="tips">
-    <li><kbd>Mouse</kbd> Press and drag across the keys</li>
-    <li><kbd>Touch</kbd> Play chords; swipe sideways to scroll</li>
-    <li><kbd>Z</kbd> to <kbd>/</kbd> and <kbd>Q</kbd> to <kbd>P</kbd> play two octaves; <kbd>←</kbd> <kbd>→</kbd> switch octave</li>
-    <li><kbd>Space</kbd> pumps the bellows in Manual mode</li>
-  </ul>
+</div>
+
+<div class="dock" id="dock" hidden role="region" aria-label="Song guide, pinned">
+  <div class="dock-song"><b id="dkTitle"></b><span id="dkRaag"></span></div>
+  <div class="dock-notes run" id="dkNotes"></div>
+  <div class="dock-taal">
+    <div class="dock-beats" id="dkBeats" aria-hidden="true"></div>
+    <div class="dock-bpm"><button type="button" id="dkMinus" aria-label="Slower">−</button><output id="dkBpm">100</output><button type="button" id="dkPlus" aria-label="Faster">+</button></div>
+    <button type="button" class="btn" id="dkTaal" aria-pressed="false">Start</button>
+  </div>
+  <button type="button" class="dock-up" id="dkUp">Guide</button>
+</div>
+
+<div class="overlay" id="info" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="infoTitle" tabindex="-1">
+    <div class="sheet-head">
+      <h2 id="infoTitle">How to use the harmonium</h2>
+      <button type="button" class="sheet-close" id="infoClose" aria-label="Close the guide">×</button>
+    </div>
+    <div class="sheet-body">
+      <section>
+        <h3>Playing</h3>
+        <ul>
+          <li><b>Mouse:</b> press a key, or press and drag across keys to glide.</li>
+          <li><b>Touch:</b> use several fingers for chords. Swipe sideways on the keys to scroll the keyboard.</li>
+          <li><b>Computer keys:</b> the <kbd>Z</kbd> row (<kbd>Z</kbd> <kbd>X</kbd> <kbd>C</kbd> <kbd>V</kbd> <kbd>B</kbd> <kbd>N</kbd> <kbd>M</kbd> <kbd>,</kbd> <kbd>.</kbd> <kbd>/</kbd>) plays white keys, and <kbd>S</kbd> <kbd>D</kbd> <kbd>G</kbd> <kbd>H</kbd> <kbd>J</kbd> <kbd>L</kbd> <kbd>;</kbd> play the black keys above them. The <kbd>Q</kbd> row (<kbd>Q</kbd> to <kbd>P</kbd>) is one octave higher, with <kbd>2</kbd> <kbd>3</kbd> <kbd>5</kbd> <kbd>6</kbd> <kbd>7</kbd> <kbd>9</kbd> <kbd>0</kbd> for black keys.</li>
+          <li><kbd>←</kbd> <kbd>→</kbd> or the Low / High switch moves those rows to another octave.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Key labels</h3>
+        <ul>
+          <li><b>सा रे ग:</b> sargam names. A dot under a key means the lower octave (mandra), a dot above means the upper (taar).</li>
+          <li>Black keys are the komal (flat) notes in small letters: re, ga, dha, ni. <b>Ma′</b> is the sharp Ma.</li>
+          <li><b>C D E:</b> the real note each key sounds. It follows the Scale changer.</li>
+          <li><b>Z X C:</b> the computer key that plays each key.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Bellows and air</h3>
+        <p><b>Auto</b> keeps the air steady, and the <b>Air</b> slider sets how strong it is: more air is louder and brighter.</p>
+        <p><b>Manual</b> works like the real thing. Air drains while you play. Hold <kbd>Space</kbd> or the Pump button, or drag the bellows up and down, to refill. Low air sounds quiet, dull and slightly flat.</p>
+      </section>
+      <section>
+        <h3>Reed stops and sound</h3>
+        <ul>
+          <li><b>Bass 16′</b> sounds an octave lower, <b>Main 8′</b> at normal pitch, <b>Tenor 4′</b> an octave higher.</li>
+          <li><b>Celeste</b> is a second 8′ reed tuned slightly apart, which gives the slow shimmering beat.</li>
+          <li>One reed always stays pulled. A change applies to the next notes you play.</li>
+          <li><b>Volume</b>, <b>Tone</b> (darker to brighter) and <b>Room</b> (echo) shape the sound.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Drone</h3>
+        <p>Sa Pa, Sa Ma or Sa Ni holds a steady background pair of notes while you play, like a tanpura. It follows your Scale changer and uses a little air in Manual mode.</p>
+      </section>
+      <section>
+        <h3>Scale changer</h3>
+        <p>Choose which pitch is Sa. Every key shifts together, so the sargam names stay in place. The names are the ones used on Indian harmoniums: Safed 1 is C, Kali 1 is C♯, Safed 2 is D, and so on. Pick the one that sits well for the singer.</p>
+      </section>
+      <section class="sheet-wide">
+        <h3>Song guide</h3>
+        <ul>
+          <li>Choose <b>Ghazals</b> or <b>Qawwali</b>, then a song. Picking a song lights its raag on the keyboard; switch that off with <b>Light the keys</b> or the × beside the keyboard.</li>
+          <li><b>Hear ascent and descent</b> plays the raag’s basic run with the current note marked, so you can follow along.</li>
+          <li><b>Taal practice</b> gives a clap and wave count with a click. Start it, set the tempo, and clap on the marked beats.</li>
+          <li><b>Apply a starting sound</b> sets reeds, tone, room and the Sa Pa drone for a ghazal or a qawwali. Change anything afterwards.</li>
+          <li>When you scroll down to play, a slim bar pins to the top with the raag notes and beat counter, so you never lose your place. <b>Hide guide</b> folds the panel away.</li>
+          <li>Songs marked “Find the raag by ear” have no raag confirmed in the sources I checked, so nothing is lit for them.</li>
+        </ul>
+      </section>
+      <section class="sheet-wide">
+        <h3>Good to know</h3>
+        <ul>
+          <li>The first key press or tap wakes the sound. If you hear nothing, check your device volume and silent switch.</li>
+          <li>Your stops, scale, sliders and labels are remembered in this browser.</li>
+          <li><kbd>?</kbd> opens this guide and <kbd>Esc</kbd> closes it.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -392,7 +657,8 @@ const DRONE_FIFTH = { sapa:-5, sama:-7, sani:-1 };
 
 /* ---------- state ---------- */
 const S = { scale:0, stops:{bass:false, main:true, celeste:true, tenor:false}, drone:'off',
-            labels:'sargam', kbBase:0, vol:75, tone:55, reverb:35, air:80, auto:true };
+            labels:'sargam', kbBase:0, vol:75, tone:55, reverb:35, air:80, auto:true,
+            bpm:100, taal:'dadra', genre:'ghazal', song:'hungama', hl:false, sbOpen:!matchMedia('(max-width:639px)').matches };
 try {
   const saved = JSON.parse(localStorage.getItem('harmonium.v1') || '{}');
   if (saved && typeof saved === 'object') {
@@ -405,7 +671,7 @@ const save = () => { try { localStorage.setItem('harmonium.v1', JSON.stringify(S
 let pressure = S.air / 100;
 
 /* ---------- audio ---------- */
-let ctx = null, bus, airGain, toneF, dryG, sendG, outG, analyser, sag, wave;
+let ctx = null, bus, airGain, toneF, dryG, sendG, outG, tickG, analyser, sag, wave;
 const AC = window.AudioContext || window.webkitAudioContext;
 
 function makeReedWave() {
@@ -449,6 +715,7 @@ function initAudio() {
   toneF.connect(dryG).connect(comp);
   toneF.connect(sendG).connect(conv).connect(wet).connect(comp);
   comp.connect(outG); outG.connect(analyser); outG.connect(ctx.destination);
+  tickG = ctx.createGain(); tickG.gain.value = 0.7; tickG.connect(ctx.destination);   // taal clicks bypass the reeds
   if (ctx.createConstantSource) { sag = ctx.createConstantSource(); sag.offset.value = 0; sag.start(); }
   applyMix(true);
   applyPressure(true);
@@ -644,7 +911,9 @@ function setBase(b) {
   save();
 }
 addEventListener('keydown', e => {
+  if (!$('#info').hidden) { if (e.key === 'Escape') closeInfo(); else if (e.key === 'Tab') { e.preventDefault(); $('#infoClose').focus(); } return; }
   if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === '?' && !(e.target && e.target.tagName === 'INPUT')) { e.preventDefault(); openInfo(); return; }
   if (e.code === 'Space') { e.preventDefault(); pumpKey = true; return; }
   const tag = e.target && e.target.tagName;
   if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && tag !== 'INPUT') { e.preventDefault(); setBase(e.key === 'ArrowRight' ? 12 : 0); return; }
@@ -718,6 +987,7 @@ function setScale(pc) {
   $('#saText').textContent = 'Sa = ' + NAMES[pc] + ' · ' + SCALE_TERMS[pc];
   if (S.labels === 'western') paintLabels();
   retuneDrone(); save();
+  if (guideReady) renderRaag();
 }
 
 /* bellows mode */
@@ -859,9 +1129,348 @@ function frame(now) {
   }
   dragGain = 0; dragRecent = Math.max(0, dragRecent - dt);
   applyPressure(false);
+  tickUI();
   drawSpectrum(now, dt); drawBellows(dt); paintGauge();
   requestAnimationFrame(frame);
 }
+
+/* ---------- song guide ---------- */
+const mod12 = n => ((n % 12) + 12) % 12;
+const rev = a => a.slice().reverse();
+let guideReady = false;
+
+/* Raag shapes are measured in semitones from the middle Sa. Negative numbers sit below Sa, 12 is the Sa above. */
+const RAAGS = {
+  yaman:   { name:'Yaman Kalyan', deva:'यमन कल्याण', pcs:[0,2,4,6,7,9,11], opt:[5],
+             aroha:[-1,2,4,6,7,9,11,12], avroha:[12,11,9,7,6,4,2,0], time:'Evening', mood:'Romantic, open, devotional',
+             tip:'Teevra Ma (Ma′) is the signature, the black key between Ma and Pa. Phrases often start from the Ni just below Sa. Yaman Kalyan, the version these songs use, lets shuddha Ma slip in briefly; it shows dashed below.' },
+  darbari: { name:'Darbari Kanada', deva:'दरबारी कान्हड़ा', pcs:[0,2,3,5,7,8,10], opt:[],
+             aroha:[0,2,3,5,7,8,10,12], avroha:[12,10,8,7,5,3,2,0], time:'Late night', mood:'Serious, deep, majestic',
+             tip:'Komal Ga, komal Dha and komal Ni give Darbari its heavy, low colour. Ga is sung with a slow swing. A harmonium cannot bend a note, so hold it steady and let the singer carry the swing. Keep the pace slow. The straight scale shown here is only the outline; the raag moves in zigzag phrases.' },
+  kirwani: { name:'Kirwani', deva:'किरवानी', pcs:[0,2,3,5,7,8,11], opt:[],
+             aroha:[0,2,3,5,7,8,11,12], avroha:[12,11,8,7,5,3,2,0], time:'', mood:'Wistful, yearning',
+             tip:'Komal Ga and komal Dha sit beside a shuddha Ni. That lifted seventh is what gives Kirwani its minor colour with a bright edge.' },
+  mkirwani:{ name:'Mishra Kirwani', deva:'मिश्र किरवानी', pcs:[0,2,3,5,7,8,11], opt:[10],
+             aroha:[0,2,3,5,7,8,11,12], avroha:[12,11,8,7,5,3,2,0], time:'', mood:'Wistful, restless',
+             tip:'Mishra means mixed: the raag is built on Kirwani and borrows colours from other raags. The Kirwani notes are lit; the dashed komal Ni is a common visitor. If you hear a note that is not lit, trust your ear.' },
+  bhimpalasi:{ name:'Bhimpalasi', deva:'भीमपलासी', pcs:[0,2,3,5,7,9,10], opt:[],
+             aroha:[-2,0,3,5,7,10,12], avroha:[12,10,9,7,5,3,2,0], time:'Afternoon', mood:'Tender, longing',
+             tip:'Going up, Re and Dha are skipped (ni Sa ga Ma Pa ni Sa′). Coming down, all seven notes appear. Komal Ga and komal Ni with shuddha Dha. Ascent and descent are different, so practise both.' },
+  kafi:    { name:'Kafi', deva:'काफ़ी', pcs:[0,2,3,5,7,9,10], opt:[],
+             aroha:[0,2,3,5,7,9,10,12], avroha:[12,10,9,7,5,3,2,0], time:'Night', mood:'Light, warm, folk-like',
+             tip:'Komal Ga and komal Ni, everything else shuddha. Kafi sits close to folk tunes, so it suits clapping and call-and-response, and it settles easily over a Sa Pa drone.' },
+  bhairavi:{ name:'Bhairavi', deva:'भैरवी', pcs:[0,1,3,5,7,8,10], opt:[],
+             aroha:[0,1,3,5,7,8,10,12], avroha:[12,10,8,7,5,3,1,0], time:'Sung at any hour', mood:'Devotional, yearning',
+             tip:'Komal Re, Ga, Dha and Ni (four black keys) with shuddha Ma and Pa. It is often chosen for devotional music and for closing a recital.' }
+};
+
+const SONGS = [
+  { id:'hungama', genre:'ghazal', title:'Hungama Hai Kyon Barpa', by:'Ghulam Ali', raag:'darbari',
+    src:[['Wikipedia','https://en.wikipedia.org/wiki/Hungama_Hai_Kyon_Barpa'],['Seniors Today','https://seniorstoday.in/?p=30035']] },
+  { id:'ranjish', genre:'ghazal', title:'Ranjish Hi Sahi', by:'Mehdi Hassan', raag:'yaman',
+    rnote:'Named as Yaman Kalyan in the sources; shuddha Ma appears in a few places.',
+    src:[['Seniors Today','https://seniorstoday.in/?p=6546'],['Ragasphere','https://www.ragasphere.com/post/making-friends-with-ragas-let-s-start-with-yaman-part-ii']] },
+  { id:'aajjane', genre:'ghazal', title:'Aaj Jaane Ki Zid Na Karo', by:'Farida Khanum', raag:'yaman',
+    src:[['Scroll.in','https://scroll.in/article/668768/scroll_in'],['Notes and Sargam','https://notesandsargam.com/aj-jane-ki-zid-na-karo/']] },
+  { id:'husn', genre:'ghazal', title:'Ae Husn-e-Beparwah', by:'Ghulam Ali', raag:'kirwani',
+    src:[['Seniors Today','https://seniorstoday.in/?p=30035']] },
+  { id:'parapara', genre:'ghazal', title:'Para Para Hua', by:'Ghulam Ali', raag:'mkirwani',
+    src:[['Seniors Today','https://seniorstoday.in/?p=30035']] },
+  { id:'zindagi', genre:'ghazal', title:'Zindagi Mein To Sabhi Pyaar Kiya Karte Hain', by:'Mehdi Hassan', raag:'bhimpalasi',
+    src:[['Seniors Today','https://seniorstoday.in/films/top-10-songs/top-10-mehdi-hassant']] },
+  { id:'chupke', genre:'ghazal', title:'Chupke Chupke Raat Din', by:'Ghulam Ali', raag:null,
+    src:[['Wikipedia','https://en.wikipedia.org/wiki/Chupke_Chupke_Raat_Din']] },
+  { id:'hothon', genre:'ghazal', title:'Hothon Se Chhu Lo Tum', by:'Jagjit Singh', raag:null,
+    src:[['Deccan Herald','https://deccanherald.com/entertainment/birth-anniversary-special-do-you-remember-these-jagjit-singh-songs-948847.html']] },
+  { id:'tumitna', genre:'ghazal', title:'Tum Itna Jo Muskura Rahe Ho', by:'Jagjit Singh', raag:null,
+    src:[['Deccan Herald','https://deccanherald.com/entertainment/birth-anniversary-special-do-you-remember-these-jagjit-singh-songs-948847.html']] },
+
+  { id:'damadam', genre:'qawwali', title:'Dama Dam Mast Qalandar', by:'Traditional, sung by many', raag:'kafi',
+    rnote:'Kafi in the Nusrat-style renditions the sources describe. Other versions differ; a Rajasthani folk version uses Shyam Kalyan.',
+    src:[['Wikipedia','https://en.wikipedia.org/wiki/Dama_Dam_Mast_Qalandar'],['Rendition notes','https://www.dailymotion.com/video/x4yd7zy'],['Rajasthani version','https://anahad.ngo/video/laal-meri-pat-gazi-khan-%E2%95%91-backpack-studio-season-1-%E2%95%91-indian-folk-music-rajasthan/']] },
+  { id:'dammastam', genre:'qawwali', title:'Dam Mastam', by:'Coke Studio Season 12', raag:'bhimpalasi',
+    rnote:'Named as Bhimpalasi in the Coke Studio preview linked below.',
+    src:[['ProPakistani','https://propakistani.pk/lens/heres-what-to-expect-from-coke-studio-season-12-opening-episode-video/']] },
+  { id:'tajdar', genre:'qawwali', title:'Tajdar-e-Haram', by:'Sabri Brothers', raag:'bhairavi',
+    rnote:'Described as Bhairavi in the linked source. Live versions wander, so use the lit keys as a map, not a rule.',
+    src:[['Wikipedia','https://en.wikipedia.org/wiki/Tajdar-e-Haram'],['Thread on the raag','https://en.rattibha.com/thread/1649357539497201664']] },
+  { id:'rashke', genre:'qawwali', title:'Mere Rashke Qamar', by:'Nusrat Fateh Ali Khan', raag:null,
+    src:[['Wikipedia','https://en.wikipedia.org/wiki/Mere_Rashke_Qamar']] },
+  { id:'bhardo', genre:'qawwali', title:'Bhar Do Jholi Meri Ya Muhammad', by:'Sabri Brothers', raag:null,
+    src:[['Humanities Across Borders','https://humanitiesacrossborders.org/node/801']] },
+  { id:'kunfaya', genre:'qawwali', title:'Kun Faya Kun', by:'A. R. Rahman, film Rockstar', raag:null,
+    src:[['Rahmaniac','https://rahmaniac.com/artist-reflections/kun-faya-kun-chand-nizami/']] }
+];
+const GENRE_LABEL = { ghazal:'Ghazal', qawwali:'Qawwali' };
+const TAALS = {
+  dadra:   { beats:[['Dha','sam'],['Dhin',''],['Na',''],['Dha','khali'],['Tin',''],['Na','']], hint:'6 beats: clap on 1, wave on 4. Common in ghazals, film songs and qawwalis.' },
+  kaharwa: { beats:[['Dha','sam'],['Ge',''],['Na',''],['Ti',''],['Na','khali'],['Ka',''],['Dhi',''],['Na','']], hint:'8 beats: clap on 1, wave on 5. The usual qawwali pulse, with the chorus clapping along.' }
+};
+const TAAL_SOURCES = [['Dadra taal','https://searchgurbani.com/taal/taal_dadra'],['Qawwali and Keharwa','https://indiacurrents.com/roots-and-legacies/'],['Britannica on qawwali','https://www.britannica.com/art/qawwali']];
+
+const songById = id => SONGS.find(s => s.id === id) || SONGS[0];
+
+/* song list */
+const listEl = $('#songList');
+function renderList() {
+  listEl.innerHTML = '';
+  SONGS.filter(s => s.genre === S.genre).forEach(s => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'song'; b.setAttribute('role', 'option');
+    b.setAttribute('aria-selected', String(s.id === S.song));
+    b.title = s.title + ' · ' + s.by;
+    b.innerHTML = '<b>' + s.title + '</b><em>' + (s.raag ? RAAGS[s.raag].name : 'Find the raag by ear') + '</em>';
+    b.addEventListener('click', () => selectSong(s.id, true));
+    listEl.appendChild(b);
+  });
+}
+function renderHead() {
+  const s = songById(S.song), r = s.raag ? RAAGS[s.raag] : null;
+  const tags = r
+    ? '<span class="tag">Raag ' + r.name + '<span class="deva" lang="hi">' + r.deva + '</span></span>' + (r.time ? '<span class="tag">' + r.time + '</span>' : '')
+    : '<span class="tag">Raag not confirmed: find it by ear</span>';
+  $('#gHead').innerHTML = '<h3>' + s.title + '<span class="by">' + s.by + ' · ' + GENRE_LABEL[s.genre] + '</span></h3><div class="g-tags">' + tags + '</div>' + (s.rnote ? '<p class="rnote">' + s.rnote + '</p>' : '');
+}
+const noteSpan = (off, k) => '<span data-k="' + k + '" class="' + (off < 0 ? 'lo' : off >= 12 ? 'hi' : '') + '">' + SARGAM[mod12(off)][1] + '</span>';
+function renderRaag() {
+  stopRun();
+  const s = songById(S.song), r = s.raag ? RAAGS[s.raag] : null, el = $('#gRaag');
+  if (!r) {
+    el.innerHTML = '<p class="desc">No source I checked names this song’s raag, so there is nothing to light up. Use the steps under “About this raag” to find its notes by ear.</p>' +
+      '<div class="btn-row"><button type="button" class="btn" id="soundBtn">Apply a starting sound</button></div><p class="small" id="soundNote"></p>';
+    $('#gTip').innerHTML = '<p class="desc">None of the sources I checked name this song’s raag, so this guide does not guess.</p>';
+  } else {
+    const chips = r.pcs.map(pc => [pc, false]).concat(r.opt.map(pc => [pc, true])).sort((a, b) => a[0] - b[0])
+      .map(([pc, o]) => '<div class="nchip' + (o ? ' opt' : '') + '"><b lang="hi">' + SARGAM[pc][0] + '</b><small>' + SARGAM[pc][1] + ' · ' + NAMES[(pc + S.scale) % 12] + '</small></div>').join('');
+    const n = r.aroha.length;
+    el.innerHTML = '<div class="notes">' + chips + '</div>' +
+      '<div class="run"><span class="lbl">Ascent</span>' + r.aroha.map((o, k) => noteSpan(o, k)).join(' ') + '</div>' +
+      '<div class="run"><span class="lbl">Descent</span>' + r.avroha.map((o, j) => noteSpan(o, n - 1 + j)).join(' ') + '</div>' +
+      '<div class="btn-row"><button type="button" class="btn" id="runBtn">Hear ascent and descent</button>' +
+      '<button type="button" class="btn ghost" id="hlBtn" aria-pressed="' + !!S.hl + '">Light the keys</button>' +
+      '<button type="button" class="btn ghost" id="soundBtn">Apply a starting sound</button></div><p class="small" id="soundNote"></p>';
+    $('#gTip').innerHTML = '<p class="desc"><b>' + r.mood + '.</b> ' + r.tip + '</p><p class="small">Underlined notes sit below the middle Sa, overlined notes above it. Western names follow your Scale changer. Dashed notes are occasional visitors.</p>';
+    $('#runBtn').addEventListener('click', () => guidePlaying ? stopRun() : playRun(r));
+    $('#hlBtn').addEventListener('click', () => setHighlight(!S.hl));
+  }
+  $('#soundBtn').addEventListener('click', () => applyStart(s.genre));
+  renderDock();
+}
+function renderSteps() {
+  const s = songById(S.song), q = s.genre === 'qawwali';
+  let steps;
+  if (!s.raag) {
+    steps = [
+      'Switch on the Sa Pa drone from the Drone panel so there is a steady home note to listen against.',
+      'Listen for the song’s first phrase and hum it. Find that pitch on the keys.',
+      'Slide the Scale changer until the first note sits where the singer’s voice is comfortable. Every key moves together, so the shape you found stays the same.',
+      'Note which black keys you keep returning to. That pattern is the raag’s fingerprint, and you can match it against the lit keys on the other songs.'
+    ];
+  } else if (!q) {
+    steps = [
+      'Switch on the Sa Pa drone and use the Scale changer to put Sa where the singer sits comfortably. Every key moves together.',
+      'Play the ascent and descent slowly, then play only the lit keys until the shape of the raag feels familiar.',
+      'Hum the first line, find it among the lit keys, and play it back at half speed.',
+      'Accompany the voice rather than lead it: short echoes between lines, long steady notes under held syllables, and rests while the singer ornaments.'
+    ];
+  } else {
+    steps = [
+      'Switch on the Sa Pa drone and set Sa for the lead singer with the Scale changer.',
+      'Learn the lit notes with the ascent and descent, then find the refrain by ear. Qawwali repeats its refrain many times, so it pays to know it cold.',
+      'Start Kaharwa at a slow tempo, clapping on 1 and waving on 5. The chorus’s clapping is part of the music.',
+      'Play the melody clearly and a little louder than you would for a ghazal. Qawwali builds from slow to fast, so raise the tempo in small steps.'
+    ];
+  }
+  $('#gSteps').innerHTML = steps.map(t => '<li>' + t + '</li>').join('');
+}
+function renderSrc() {
+  const s = songById(S.song);
+  const link = ([t, u]) => '<a href="' + u + '" target="_blank" rel="noopener noreferrer">' + t + '</a>';
+  $('#gSrc').innerHTML = 'Sources: ' + s.src.map(link).join(', ') + '. Taal notes: ' + TAAL_SOURCES.map(link).join(', ') + '. Taal choices are practice pulses, not a claim about each recording.';
+}
+
+/* highlight on the main keyboard */
+function applyGuideKeys() {
+  const s = songById(S.song), r = (S.hl && s.raag) ? RAAGS[s.raag] : null;
+  const set = r ? new Set(r.pcs.concat(r.opt)) : null;
+  keysEl.classList.toggle('guide', !!r);
+  keyEls.forEach((el, i) => el.classList.toggle('in', !!set && set.has(i % 12)));
+  $('#raagTag').hidden = !r;
+  if (r) $('#raagName').textContent = r.name;
+  const hb = $('#hlBtn'); if (hb) hb.setAttribute('aria-pressed', String(!!S.hl));
+}
+function setHighlight(on) { S.hl = on; applyGuideKeys(); save(); }
+$('#raagClear').addEventListener('click', () => setHighlight(false));
+
+function selectSong(id, user) {
+  S.song = id; if (user) S.hl = true;
+  renderList(); renderHead(); renderRaag(); renderSteps(); renderSrc(); applyGuideKeys(); save();
+}
+function setGenre(g) {
+  S.genre = g;
+  $$('#genreSeg button').forEach(x => x.setAttribute('aria-checked', String(x.dataset.genre === g)));
+  if (songById(S.song).genre !== g) S.song = SONGS.find(s => s.genre === g).id;
+  setTaal(g === 'qawwali' ? 'kaharwa' : 'dadra');
+  selectSong(S.song, false);
+}
+$$('#genreSeg button').forEach(b => b.addEventListener('click', () => setGenre(b.dataset.genre)));
+
+/* starting sound */
+function applyStart(genre) {
+  const q = genre === 'qawwali';
+  const p = q ? { stops:{bass:false, main:true, celeste:true, tenor:true}, tone:72, reverb:22, air:92 }
+              : { stops:{bass:false, main:true, celeste:true, tenor:false}, tone:46, reverb:48, air:72 };
+  Object.assign(S.stops, p.stops); S.tone = p.tone; S.reverb = p.reverb; if (S.auto) S.air = p.air;
+  $$('#stops .stop').forEach(b => b.setAttribute('aria-pressed', String(!!S.stops[b.dataset.stop])));
+  ['tone', 'reverb', 'air'].forEach(id => { const el = $('#' + id); el.value = S[id]; el._paint(); });
+  unlock(); setDrone('sapa'); applyMix(); save();
+  $('#soundNote').textContent = q
+    ? 'Set: Main, Celeste and Tenor reeds, a bright tone, a short room and the Sa Pa drone. Change anything you like.'
+    : 'Set: Main and Celeste reeds, a softer tone, a longer room and the Sa Pa drone. Change anything you like.';
+}
+
+/* ascent and descent playback */
+let guideTimers = [], guidePlaying = false;
+function playRun(r) {
+  stopRun(); unlock(); if (!ctx) return;
+  guidePlaying = true; $('#runBtn').textContent = 'Stop';
+  const seq = r.aroha.concat(r.avroha.slice(1)), step = 640; let t = 120;
+  seq.forEach((off, k) => {
+    const idx = 12 + off;
+    guideTimers.push(setTimeout(() => {
+      $$('.run span.now').forEach(x => x.classList.remove('now'));
+      $$('.run span[data-k="' + k + '"]').forEach(x => x.classList.add('now'));
+      press(idx, 'guide');
+    }, t));
+    guideTimers.push(setTimeout(() => release(idx, 'guide'), t + step * 0.85));
+    t += step;
+  });
+  guideTimers.push(setTimeout(stopRun, t + 250));
+}
+function stopRun() {
+  guideTimers.forEach(clearTimeout); guideTimers = [];
+  Array.from(held.keys()).forEach(i => release(i, 'guide'));
+  guidePlaying = false;
+  $$('.run span.now').forEach(x => x.classList.remove('now'));
+  const b = $('#runBtn'); if (b) b.textContent = 'Hear ascent and descent';
+}
+
+/* taal metronome */
+const beatsEl = $('#beats'), taalBtn = $('#taalBtn');
+let beatCells = [], dockCells = [], taalOn = false, taalTimer = null, nextT = 0, beatI = 0, uiQueue = [];
+function renderBeats() {
+  const T = TAALS[S.taal];
+  beatsEl.style.setProperty('--nb', T.beats.length);
+  beatsEl.innerHTML = T.beats.map(([bol, kind], i) =>
+    '<div class="beat' + (kind === 'sam' ? ' sam' : '') + '"><em>' + (i + 1) + '</em><b>' + bol + '</b><i>' + (kind === 'sam' ? 'clap' : kind === 'khali' ? 'wave' : '') + '</i></div>').join('');
+  beatCells = $$('.beat', beatsEl);
+  $('#dkBeats').innerHTML = T.beats.map(([bol, kind]) => '<i class="' + kind + '">' + bol + '</i>').join('');
+  dockCells = $$('#dkBeats i');
+  $('#taalHint').textContent = T.hint;
+}
+function setTaal(t) {
+  S.taal = t;
+  $$('#taalSeg button').forEach(x => x.setAttribute('aria-checked', String(x.dataset.taal === t)));
+  renderBeats();
+  if (taalOn) startTaal();
+  save();
+}
+$$('#taalSeg button').forEach(b => b.addEventListener('click', () => setTaal(b.dataset.taal)));
+function click(time, kind) {
+  const o = ctx.createOscillator(), g = ctx.createGain();
+  o.type = 'sine'; o.frequency.value = kind === 'sam' ? 1700 : kind === 'khali' ? 650 : 1050;
+  const peak = kind === 'sam' ? 0.55 : kind === 'khali' ? 0.2 : 0.3;
+  g.gain.setValueAtTime(0.0001, time);
+  g.gain.exponentialRampToValueAtTime(peak, time + 0.004);
+  g.gain.exponentialRampToValueAtTime(0.0001, time + 0.09);
+  o.connect(g).connect(tickG); o.start(time); o.stop(time + 0.1);
+}
+function schedule() {
+  const T = TAALS[S.taal], spb = 60 / S.bpm;
+  while (nextT < ctx.currentTime + 0.15) {
+    click(nextT, T.beats[beatI][1] || 'beat');
+    uiQueue.push({ t: nextT, i: beatI });
+    beatI = (beatI + 1) % T.beats.length; nextT += spb;
+  }
+}
+function startTaal() {
+  unlock(); if (!ctx) return;
+  stopTaal();
+  taalOn = true; beatI = 0; uiQueue = []; nextT = ctx.currentTime + 0.1;
+  schedule(); taalTimer = setInterval(schedule, 30);
+  [taalBtn, $('#dkTaal')].forEach(b => { b.textContent = 'Stop'; b.setAttribute('aria-pressed', 'true'); });
+}
+function stopTaal() {
+  clearInterval(taalTimer); taalTimer = null; taalOn = false; uiQueue = [];
+  beatCells.concat(dockCells).forEach(c => c.classList.remove('on'));
+  [taalBtn, $('#dkTaal')].forEach(b => { b.textContent = 'Start'; b.setAttribute('aria-pressed', 'false'); });
+}
+function tickUI() {
+  if (!taalOn || !ctx) return;
+  let last = -1; const now = ctx.currentTime;
+  while (uiQueue.length && uiQueue[0].t <= now) last = uiQueue.shift().i;
+  if (last >= 0) { beatCells.concat(dockCells).forEach(c => c.classList.remove('on')); [beatCells[last], dockCells[last]].forEach(c => c && c.classList.add('on')); }
+}
+taalBtn.addEventListener('click', () => taalOn ? stopTaal() : startTaal());
+document.addEventListener('visibilitychange', () => { if (document.hidden) { stopRun(); stopTaal(); } });
+
+function initGuide() {
+  if (!SONGS.some(s => s.id === S.song)) S.song = 'hungama';
+  S.genre = songById(S.song).genre;
+  if (!TAALS[S.taal]) S.taal = 'dadra';
+  syncSlider('bpm');
+  $$('#genreSeg button').forEach(x => x.setAttribute('aria-checked', String(x.dataset.genre === S.genre)));
+  $$('#taalSeg button').forEach(x => x.setAttribute('aria-checked', String(x.dataset.taal === S.taal)));
+  renderBeats(); renderList(); renderHead(); renderRaag(); renderSteps(); renderSrc(); applyGuideKeys();
+  guideReady = true;
+}
+
+/* pinned bar */
+const dock = $('#dock'), songbookEl = $('#songbook');
+function renderDock() {
+  const s = songById(S.song), r = s.raag ? RAAGS[s.raag] : null;
+  $('#dkTitle').textContent = s.title;
+  $('#dkRaag').textContent = r ? r.name : 'Raag by ear';
+  $('#dkBpm').textContent = S.bpm;
+  $('#dkNotes').innerHTML = r
+    ? '<span class="lbl">Up</span>' + r.aroha.map((o, k) => noteSpan(o, k)).join(' ') + '<span class="lbl">Down</span>' + r.avroha.map((o, j) => noteSpan(o, r.aroha.length - 1 + j)).join(' ')
+    : '<span class="lbl">Find the notes by ear</span>';
+}
+function nudgeBpm(d) {
+  S.bpm = clamp(S.bpm + d, 50, 180);
+  const el = $('#bpm'); el.value = S.bpm; el._paint(); $('#dkBpm').textContent = S.bpm; save();
+}
+$('#dkMinus').addEventListener('click', () => nudgeBpm(-5));
+$('#dkPlus').addEventListener('click', () => nudgeBpm(5));
+$('#bpm').addEventListener('input', () => { $('#dkBpm').textContent = S.bpm; });
+$('#dkTaal').addEventListener('click', () => taalOn ? stopTaal() : startTaal());
+$('#dkUp').addEventListener('click', () => songbookEl.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(([e]) => { dock.hidden = e.isIntersecting; }, { threshold: 0, rootMargin: '-200px 0px 0px 0px' }).observe(songbookEl);
+}
+
+/* collapse the guide */
+const sbBody = $('#sbBody'), sbToggle = $('#sbToggle');
+function setSb(open) {
+  S.sbOpen = open; sbBody.hidden = !open;
+  sbToggle.setAttribute('aria-expanded', String(open)); sbToggle.textContent = open ? 'Hide guide' : 'Show guide'; save();
+}
+sbToggle.addEventListener('click', () => setSb(!S.sbOpen));
+
+/* help sheet */
+const info = $('#info'), infoBtn = $('#infoBtn');
+let infoReturn = null;
+function openInfo() {
+  releaseAll(); stopRun(); infoReturn = document.activeElement;
+  info.hidden = false; document.body.style.overflow = 'hidden'; $('.sheet', info).focus();
+}
+function closeInfo() {
+  info.hidden = true; document.body.style.overflow = '';
+  if (infoReturn && infoReturn.focus) infoReturn.focus();
+}
+infoBtn.addEventListener('click', openInfo);
+$('#infoClose').addEventListener('click', closeInfo);
+info.addEventListener('click', e => { if (e.target === info) closeInfo(); });
 
 /* ---------- boot ---------- */
 setDrone(S.drone);
@@ -869,6 +1478,8 @@ setLabels(S.labels);
 setBase(S.kbBase);
 setScale(S.scale);
 setAuto(S.auto);
+initGuide();
+setSb(S.sbOpen !== false);
 refit();
 requestAnimationFrame(frame);
 // start the small screens near the middle of the keyboard
